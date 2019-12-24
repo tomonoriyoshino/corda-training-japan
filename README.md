@@ -54,7 +54,7 @@ Cordaを使用してIOUを発行するには、まず「IOUState」、次に「I
 * "-javaagent：/PATH_TO_FILE_FROM_ROOT_DIR/quasar.jar"
 
 
-# Solutions Files
+# ファイル構成
 
 ### Kotlin
 State:
