@@ -1,6 +1,6 @@
 ![Corda](https://www.corda.net/wp-content/uploads/2016/11/fg005_corda_b.png)
 
-# Corda Training Solutions
+# Corda Training in Japan
 
 このレポには、Cordaの2日間のトレーニングコースの実践的な演習のためのすべてのソリューションが含まれています
 このリポジトリは、JavaソリューションとKotlinソリューションの2つのパートに分かれています。
