@@ -5,7 +5,7 @@
 このレポには、Cordaの2日間のトレーニングコースの実践的な演習のためのすべてのソリューションが含まれています
 このリポジトリは、JavaソリューションとKotlinソリューションの2つのパートに分かれています。
 
-# Setup
+# セットアップ
 
 ### Tools
 * JDK 1.8 latest version
@@ -27,7 +27,7 @@ JDKがインストールされた場所に移動します）。 「OK」をク�
 再びすべてのオプションをそのままにします。
 
 
-# Instructions
+# イントロダクション
 
 すべての設定が完了したら、クラステンプレートの拡張を開始できます。 このプロジェクトは、テスト駆動開発スタイルで進めていきます。
 -各クラスの単体テストには、このCorDappを完了するために必要なすべての情報が含まれています。
@@ -116,7 +116,7 @@ The code in the following files was already added for you:
 * `java-source/src/main/java/net/corda/training/flow/SelfIssueCashFlow.java`
 
 
-# Running the CorDapp
+# CorDappの実行
 
 アプリケーションが「IOUStateTests」、「IOUIssueTests」、および「IOUIssueFlowTests」のすべてのテストに合格すると、アプリケーションを実行して
 Webブラウザーを介して対話します。 完成したアプリケーションを実行するには、言語ごとに2つの選択肢があります。ターミナルからとIntelliJからです。
