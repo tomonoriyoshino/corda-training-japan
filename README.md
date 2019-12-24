@@ -28,31 +28,17 @@ JDKがインストールされた場所に移動します）。 「OK」をク�
 
 
 # Instructions
-Once you are all set up, you can start expanding on the class templates. This project follows a test-based
-development style - the unit tests for each class contain all the information you will need to complete this CorDapp.
 
-All the tests are commented out by default - to complete this training, you will uncomment them one at a time, building up 
-the CorDapp until it passes everything.
+すべての設定が完了したら、クラステンプレートの拡張を開始できます。 このプロジェクトは、テスト駆動開発スタイルで進めていきます。
+-各クラスの単体テストには、このCorDappを完了するために必要なすべての情報が含まれています。
 
-You will begin by opening `IOUState` and `IOUStateTests` in your language of choice and uncommenting the first test. Then, use the TODO and 
-hints to modify `IOUState` to pass the test. 
-
-In order to issue IOU's using Corda - You will first fix `IOUState`, then `IOUContract`, and lastly `IOUIssueFlow`. Then you can move on to
-more challenging exercises specified in Transfer and Settle testing files.
-
-
-すべての設定が完了したら、クラステンプレートの拡張を開始できます。 このプロジェクトは、テストベースの
-開発スタイル-各クラスの単体テストには、このCorDappを完了するために必要なすべての情報が含まれています。
-
-すべてのテストはデフォルトでコメント化されています-このトレーニングを完了するには、一度に1つのコメントを外してビルドします
-CorDappがすべて合格するまで。
+すべてのテストはデフォルトでコメント化されています-このトレーニングを完了するには、CorDappがすべて合格するまで1つづつのコメントを外して
+ビルドします
 
 まず、選択した言語で「IOUState」と「IOUStateTests」を開き、最初のテストのコメントを外します。 次に、TODOを使用して
 テストに合格するように `IOUState`を変更するためのヒント。
 
-Cordaを使用してIOUを発行するには、まず「IOUState」、次に「IOUContract」、最後に「IOUIssueFlow」を修正します。 その後、に進むことができます
-テストファイルの転送と決済で指定されている、より挑戦的な演習。
-
+Cordaを使用してIOUを発行するには、まず「IOUState」、次に「IOUContract」、最後に「IOUIssueFlow」を修正します。 その後、転送と決済のテストファイルので指定されている、より挑戦的な演習に進むことができます。
 
 ### Running the tests
 * Kotlin：ドロップダウン実行構成メニューから「Kotlin-単体テスト」を選択し、緑色の再生ボタンをクリックします。
