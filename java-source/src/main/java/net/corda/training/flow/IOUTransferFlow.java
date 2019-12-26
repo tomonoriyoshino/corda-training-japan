@@ -30,9 +30,13 @@ import static net.corda.core.contracts.ContractsDSL.requireThat;
 
 /**
  * This is the flow which handles transfers of existing IOUs on the ledger.
+ *これは、元帳上の既存のIOUの転送を処理するフローです。
  * Gathering the counterparty's signature is handled by the [CollectSignaturesFlow].
+ *取引相手の署名の収集は[CollectSignaturesFlow]によって処理されます。
  * Notarisation (if required) and commitment to the ledger is handled by the [FinalityFlow].
+ *公証（必要な場合）および元帳へのコミットメントは、[FinalityFlow]によって処理されます。
  * The flow returns the [SignedTransaction] that was committed to the ledger.
+ *フローは、レジャーにコミットされた[SignedTransaction]を返します。
  */
 public class IOUTransferFlow{
 
