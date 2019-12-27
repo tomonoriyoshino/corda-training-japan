@@ -36,9 +36,13 @@ public class IOUSettleFlow {
 
     /**
      * This is the flow which handles the settlement (partial or complete) of existing IOUs on the ledger.
+     *これは、元帳上の既存のIOUの決済（部分的または完全）を処理するフローです。
      * Gathering the counterparty's signature is handled by the [CollectSignaturesFlow].
+     *取引相手の署名の収集は[CollectSignaturesFlow]によって処理されます。
      * Notarisation (if required) and commitment to the ledger is handled by the [FinalityFlow].
+     *公証（必要な場合）および元帳へのコミットメントは、[FinalityFlow]によって処理されます。
      * The flow returns the [SignedTransaction] that was committed to the ledger.
+     *フローは、レジャーにコミットされた[SignedTransaction]を返します。
      */
     @InitiatingFlow
     @StartableByRPC
