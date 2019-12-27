@@ -143,6 +143,7 @@ public class IOUIssueFlow {
             subFlow(signTxFlow);
 
             // Run the ReceiveFinalityFlow to finalize the transaction and persist it to the vault.
+            // ReceiveFinalityFlowを実行してトランザクションを終了し、ボールトに永続化します。
             return subFlow(new ReceiveFinalityFlow(flowSession, txWeJustSigned));
 
         }
