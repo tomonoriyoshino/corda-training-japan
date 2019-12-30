@@ -119,9 +119,9 @@ public class IOUTransferFlow{
             SignedTransaction fullySignedTransaction = subFlow(new CollectSignaturesFlow(partiallySignedTransaction, sessions));
             /* 10. Return the output of the FinalityFlow which sends the transaction to the notary for verification
              *     and the causes it to be persisted to the vault of appropriate nodes.
-             */
-            / * 10. FinalityFlowの出力を返します。FinalityFlowは、検証のためにトランザクションを公証人に送信し、
-              *    適切なノードのボールトに永続化させます。
+             *
+             * 10. FinalityFlowの出力を返します。FinalityFlowは、検証のためにトランザクションを公証人に送信し、
+             *    適切なノードのボールトに永続化させます。
              */     
             return subFlow(new FinalityFlow(fullySignedTransaction, sessions));
         }
