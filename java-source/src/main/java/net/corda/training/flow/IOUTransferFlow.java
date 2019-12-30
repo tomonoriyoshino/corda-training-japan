@@ -75,6 +75,7 @@ public class IOUTransferFlow{
             TransactionBuilder tb = new TransactionBuilder(notary);
 
             // 4. Construct a transfer command to be added to the transaction.
+            // 4.トランザクションに追加する転送コマンドを作成します。
             List<PublicKey> listOfRequiredSigners = inputStateToTransfer.getParticipants()
                     .stream().map(AbstractParty::getOwningKey)
                     .collect(Collectors.toList());
