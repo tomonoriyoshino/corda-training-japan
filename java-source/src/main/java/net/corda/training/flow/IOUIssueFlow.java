@@ -25,7 +25,7 @@ import static net.corda.training.contract.IOUContract.Commands.*;
  * Gathering the counterparty's signature is handled by the [CollectSignaturesFlow].
  *取引相手の署名の収集は[CollectSignaturesFlow]によって処理されます。
  * Notarisation (if required) and commitment to the ledger is handled by the [FinalityFlow].
- *公証（必要な場合）および元帳へのコミットメントは、[FinalityFlow]によって処理されます。
+ *ノータリー（必要な場合）および元帳へのコミットメントは、[FinalityFlow]によって処理されます。
  * The flow returns the [SignedTransaction] that was committed to the ledger.
  *フローは、レジャーにコミットされた[SignedTransaction]を返します。
  */
@@ -43,9 +43,9 @@ public class IOUIssueFlow {
         @Override
         public SignedTransaction call() throws FlowException {
             // Step 1. Get a reference to the notary service on our network and our key pair.
-            //ステップ1.ネットワーク上の公証サービスとキーペアへの参照を取得します。
+            //ステップ1.ネットワーク上のノータリーサービスとキーペアへの参照を取得します。
             // Note: ongoing work to support multiple notary identities is still in progress.
-            //注：複数の公証人の身元をサポートするための進行中の作業はまだ進行中です。
+            //注：複数のノータリーのアイデンティティをサポートするための作業はまだ進行中です。
             final Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
 
             // Step 2. Create a new issue command.
