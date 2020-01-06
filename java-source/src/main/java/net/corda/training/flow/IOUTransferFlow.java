@@ -56,7 +56,7 @@ public class IOUTransferFlow{
         public SignedTransaction call() throws FlowException {
 
             // 1. Retrieve the IOU State from the vault using LinearStateQueryCriteria
-            // 1. LinearStateQueryCriteriaを使用して、ボールトからIOU状態を取得します
+            // 1. LinearStateQueryCriteriaを使用して、ボールトからIOU Stateを取得します
             List<UUID> listOfLinearIds = new ArrayList<>();
             listOfLinearIds.add(stateLinearId.getId());
             QueryCriteria queryCriteria = new QueryCriteria.LinearStateQueryCriteria(null, listOfLinearIds);
@@ -70,7 +70,7 @@ public class IOUTransferFlow{
             // 3. We should now get some of the components required for to execute the transaction
             // 3.トランザクションを実行するために必要なコンポーネントの一部を取得する必要があります
             // Here we get a reference to the default notary and instantiate a transaction builder.
-            //ここでは、デフォルトの公証人への参照を取得し、トランザクションビルダーをインスタンス化します。
+            //ここでは、デフォルトのノータリーへの参照を取得し、トランザクションビルダーをインスタンス化します。
             Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
             TransactionBuilder tb = new TransactionBuilder(notary);
 
@@ -91,7 +91,7 @@ public class IOUTransferFlow{
             tb.addCommand(command);
 
             // 6. Add input and output states to flow using the TransactionBuilder.
-            // 6. TransactionBuilderを使用して、入力状態と出力状態をフローに追加します。
+            // 6. TransactionBuilderを使用して、inputState とoutputstateをフローに追加します。
             tb.addInputState(inputStateAndRefToTransfer);
             tb.addOutputState(inputStateToTransfer.withNewLender(newLender), IOUContract.IOU_CONTRACT_ID);
 
@@ -102,7 +102,7 @@ public class IOUTransferFlow{
             }
 
             // 8. Verify and sign the transaction
-            // 8.トランザクションを検証して署名する
+            // 8.トランザクションを検証して署名します
             tb.verify(getServiceHub());
             SignedTransaction partiallySignedTransaction = getServiceHub().signInitialTransaction(tb);
 
@@ -131,7 +131,7 @@ public class IOUTransferFlow{
 
     /**
      * This is the flow which signs IOU settlements.
-     *これは、IOU決裁に署名するフローです。
+     *これは、IOU決済に署名するフローです。
      *The signing is handled by the [SignTransactionFlow].
      *署名は[SignTransactionFlow]によって処理されます。
      */
