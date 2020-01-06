@@ -37,7 +37,7 @@ public class IOUContract implements Contract {
      * The IOUContract can handle three transaction types involving [IOUState]s.
      * IOUContractは、[IOUState]を含む3つのトランザクションタイプを処理できます。
      * - Issuance: Issuing a new [IOUState] on the ledger, which is a bilateral agreement between two parties.
-     *-発行：元帳に新しい[IOUState]を発行します。これは、2者間の二国間協定です。
+     *-発行：元帳に新しい[IOUState]を発行します。これは、2者間の合意です。
      * - Transfer: Re-assigning the lender/beneficiary.
       *-譲渡：貸主/受益者の再割り当て。
      * - Settle: Fully or partially settling the [IOUState] using the Corda [Cash] contract.
@@ -174,12 +174,12 @@ public class IOUContract implements Contract {
 
                 if (amountOutstanding.equals(acceptableCashSum)) {
                     // If the IOU has been fully settled then there should be no IOU output state.
-                    // IOUが完全に解決された場合、IOU出力状態はありません。
+                    // IOUが完全に決済された場合、IOU出力状態はありません。
                     require.using("There must be no output IOU as it has been fully settled.", tx.outputsOfType(IOUState.class).isEmpty());
 
                 } else {
                     // If the IOU has been partially settled then it should still exist.
-                    // IOUが部分的に解決されている場合、IOUはまだ存在するはずです。
+                    // IOUが部分的に決済されている場合、IOUはまだ存在するはずです。
                     require.using("There must be one output IOU.", tx.outputsOfType(IOUState.class).size() == 1);
 
                     IOUState outputIOU = tx.outputsOfType(IOUState.class).get(0);
