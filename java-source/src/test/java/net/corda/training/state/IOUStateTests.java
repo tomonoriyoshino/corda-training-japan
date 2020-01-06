@@ -252,17 +252,21 @@ public class IOUStateTests {
     /**
      * Task 12.
      * TODO: Ensure constructors are overloaded correctly.
+     * TODO：コンストラクターが正しくオーバーロードされるようにします。
      * This test serves as a sanity check that the two constructors have been implemented properly. If it fails, refer to the instructions of Tasks 8 and 10.
+     *このテストは、2つのコンストラクターが適切に実装されていることの健全性チェックとして機能します。 失敗した場合は、タスク8および10の指示を参照してください。
      */
     @Test
     public void correctConstructorsExist() {
         // Public constructor for new states
+        //新しい状態のパブリックコンストラクター
         try {
             Constructor<IOUState> contructor = IOUState.class.getConstructor(Amount.class, Party.class, Party.class);
         } catch( NoSuchMethodException nsme ) {
             fail("The correct public constructor does not exist!");
         }
         // Private constructor for updating states
+        //状態を更新するためのプライベートコンストラクター
         try {
             Constructor<IOUState> contructor = IOUState.class.getDeclaredConstructor(Amount.class, Party.class, Party.class, Amount.class, UniqueIdentifier.class);
         } catch( NoSuchMethodException nsme ) {
