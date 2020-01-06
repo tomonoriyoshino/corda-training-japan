@@ -138,7 +138,7 @@ public class IOUSettleFlow {
             /* 12. Return the output of the FinalityFlow which sends the transaction to the notary for verification
              *     and the causes it to be persisted to the vault of appropriate nodes.
              *12.検証のためにトランザクションを公証人に送信するFinalityFlowの出力を返します。これにより
-             *適切なノードのボールトに永続化されます。
+             *　　適切なノードのボールトに永続化されます。
              */
             return subFlow(new FinalityFlow(fullySignedTransaction, sessions));
 
@@ -148,7 +148,7 @@ public class IOUSettleFlow {
 
     /**
      * This is the flow which signs IOU settlements.
-     *これは、IOU和解に署名するフローです。
+     *これは、IOU決済に署名するフローです。
      * The signing is handled by the [SignTransactionFlow].
      *署名は[SignTransactionFlow]によって処理されます。
      */
@@ -222,7 +222,7 @@ public class IOUSettleFlow {
             //キャッシュ発行コマンドを作成します。
             OpaqueBytes issueRef = OpaqueBytes.of(new byte[0]);
             // Note: ongoing work to support multiple notary identities is still in progress. */
-            //注：複数の公証人の身元をサポートするための進行中の作業はまだ進行中です。 * /
+            //注：複数のノータリーのアイデンティティをサポートするための作業はまだ進行中です。 * /
             Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
             // Create the cash issuance transaction.
             //現金発行トランザクションを作成します。
