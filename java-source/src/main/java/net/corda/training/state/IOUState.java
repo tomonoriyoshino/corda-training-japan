@@ -14,7 +14,7 @@ import javax.servlet.http.Part;
 
 /**
  * The IOU State object, with the following properties:
- *次のプロパティを持つIOU状態オブジェクト：
+ *次のプロパティを持つIOU Stateオブジェクト：
  * - [amount] The amount owed by the [borrower] to the [lender]
  *-[金額] [借り手]が[貸し手]に支払うべき金額
  * - [lender] The lending party.
@@ -27,9 +27,9 @@ import javax.servlet.http.Part;
  *-[支払い済み] [支払い済み]の金額を記録します。
  * - [linearId] A unique id shared by all LinearState states representing the same agreement throughout history within
  *-[linearId]すべてのLinearState状態で共有される一意のID。
- *   the vaults of all parties. Verify methods should check that one input and one output share the id in a transaction,
- *すべての関係者の金庫。 メソッドは、1つの入力と1つの出力がトランザクションでIDを共有していることを確認する必要があります。
- *   except at issuance/termination.
+ * the vaults of all parties. Verify methods should check that one input and one output share the id in a transaction,
+ *すべての関係者のVault。 メソッドは、1つの入力と1つの出力がトランザクションでIDを共有していることを確認する必要があります。
+ * except at issuance/termination.
  *発行/終了時を除きます。
  */
 
@@ -90,7 +90,7 @@ public class IOUState implements ContractState, LinearState {
 
     /**
      * Helper methods for when building transactions for settling and transferring IOUs.
-     * IOUを決済および転送するためのトランザクションを構築するときのヘルパーメソッド。
+     * IOUを決済および転送するためのトランザクションを構築するときの補助となるメソッド。
      * - [pay] adds an amount to the paid property. It does no validation.
      *-[pay]は、支払われたプロパティに金額を追加します。 検証は行われません。
      * - [withNewLender] creates a copy of the current state with a newly specified lender. For use when transferring.
