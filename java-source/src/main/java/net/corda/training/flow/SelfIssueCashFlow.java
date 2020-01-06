@@ -27,7 +27,7 @@ public class SelfIssueCashFlow extends FlowLogic<Cash.State> {
         /**現金発行コマンドを作成します。 */
         OpaqueBytes issueRef = OpaqueBytes.of("1".getBytes());
         /** Note: ongoing work to support multiple notary identities is still in progress. */
-        /**注：複数の公証人の身元をサポートするための進行中の作業はまだ進行中です。 */
+        /**注：複数のノータリーのアイデンティティをサポートするための進行中の作業はまだ進行中です。 */
         Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
         /** Create the cash issuance transaction. */
         /**現金発行トランザクションを作成します。 */
