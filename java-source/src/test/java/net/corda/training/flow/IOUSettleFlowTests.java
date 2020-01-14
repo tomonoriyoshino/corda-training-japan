@@ -70,6 +70,7 @@ public class IOUSettleFlowTests{
         startedNodes.add(c);
 
         // For real nodes this happens automatically, but we have to manually register the flow for tests
+        //実際のノードの場合、これは自動的に行われますが、テスト用のフローを手動で登録する必要があります
         startedNodes.forEach(el -> el.registerInitiatedFlow(IOUSettleFlow.Responder.class));
         mockNetwork.runNetwork();
     }
