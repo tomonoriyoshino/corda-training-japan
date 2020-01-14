@@ -2,7 +2,7 @@
 
 # Corda Training in Japan
 
-このレポには、Cordaの2日間のトレーニングコースの実践的な演習のためのすべてのソリューションが含まれています
+このレポには、Cordaトレーニングコースの実践的な演習のためのすべてのソリューションが含まれています
 このリポジトリは、JavaソリューションとKotlinソリューションの2つのパートに分かれています。
 
 # セットアップ
@@ -124,15 +124,15 @@ Webブラウザーを介して対話します。 完成したアプリケーシ�
 
 
 ### Kotlin
-*ターミナル：ルートプロジェクトフォルダーに移動し、 `。/ gradlew kotlin-source：deployNodes`を実行してから、
-`。/ kotlin-source / build / node / runnodes`
+*ターミナル：ルートプロジェクトフォルダーに移動し、 `./ gradlew kotlin-source：deployNodes`を実行してから、
+`./ kotlin-source / build / node / runnodes`
 
 * IntelliJ：プロジェクトを開いた状態で、ドロップダウン実行構成メニューから「Kotlin-Node driver」を選択し、クリックします
 緑の再生ボタン。
 
 ### Java
-*ターミナル：ルートプロジェクトフォルダーに移動し、 `。/ gradlew java-source：deployNodes`を実行し、続いて
-`。/ java-source / build / node / runnodes`
+*ターミナル：ルートプロジェクトフォルダーに移動し、 `./ gradlew java-source：deployNodes`を実行し、続いて
+`./ java-source / build / node / runnodes`
 
 * IntelliJ：プロジェクトを開いた状態で、ドロップダウン実行構成メニューから「Java-NodeDriver」を選択し、クリックします
 緑の再生ボタン。
