@@ -25,9 +25,13 @@ import static net.corda.training.TestUtils.*;
 
 /**
  * Practical exercise instructions for Contracts Part 2.
+ *契約パート2の実践的な演習手順。
  * The objective here is to write some contract code that verifies a transaction to issue an [IOUState].
+ *ここでの目的は、トランザクションを検証して[IOUState]を発行する契約コードを記述することです。
  * As with the [IOUIssueTests] uncomment each unit test and run them one at a time. Use the body of the tests and the
  * task description to determine how to get the tests to pass.
+ * [IOUIssueTests]と同様に、各ユニットテストのコメントを外し、一度に1つずつ実行します。 
+ * テストの本文とタスクの説明を使用して、テストに合格する方法を決定します。
  */
 
 public class IOUTransferTests {
@@ -52,28 +56,40 @@ public class IOUTransferTests {
     /**
      * Task 1.
      * Now things are going to get interesting!
+     * 今、物事は面白くなりそうです！
      * We need the [IOUContract] to not only handle Issues of IOUs but now also Transfers.
+     * [IOUContract]は、IOUの発行の問題だけでなく、転送も処理する必要があります。
      * Of course, we'll need to add a new Command and add some additional contract code to handle Transfers.
+     *もちろん、新しいコマンドを追加し、転送を処理するためにいくつかの追加の契約コードを追加する必要があります。
      * TODO: Add a "Transfer" command to the IOUState and update the verify() function to handle multiple commands.
+     * TODO：「Transfer」コマンドをIOUStateに追加し、verify（）関数を更新して複数のコマンドを処理します。
      * Hint:
      * - As with the [Issue] command, add the [Transfer] command within the [IOUContract.Commands].
+     *-[Issue]コマンドと同様に、[IOUContract.Commands]内に[Transfer]コマンドを追加します。
      * - Again, we only care about the existence of the [Transfer] command in a transaction, therefore it should
      *   subclass the [TypeOnlyCommandData].
+     *-繰り返しますが、トランザクション内の[Transfer]コマンドの存在のみを考慮しているため、
+     * [TypeOnlyCommandData]をサブクラス化する必要があります。
      * - You can use the [requireSingleCommand] function to check for the existence of a command which implements a
      *   specified interface:
+     *-[requireSingleCommand]関数を使用して、指定したインターフェイスを実装するコマンドの存在を確認できます。
      *
      *       final CommandWithParties<Commands> command = requireSingleCommand(tx.getCommands(), Commands.class);
      *       final Commands commandData = command.getValue();
      *
      *   To match any command that implements [IOUContract.Commands]
+     * [IOUContract.Commands]を実装するコマンドに一致させるため
      * - We then need conditional logic based on the type of [Command.value], in Java you can do this using an "if-else" statement
+     *-[Command.value]のタイプに基づく条件付きロジックが必要です。Javaでは、「if-else」ステートメントを使用してこれを行うことができます
      * - For each "if", or "elseIf" block, you can check the type of [Command.value]:
+     *-「if」または「elseIf」ブロックごとに、[Command.value]のタイプを確認できます。
      *
      *        if (commandData.equals(new Commands.Issue())) {
      *        requireThat(require -> {...})
      *        } else if (...) {}
      *
      * - The [requireSingleCommand] function will handle unrecognised types for you (see first unit test).
+     *-[requireSingleCommand]関数は、認識されないタイプを処理します（最初のユニットテストを参照）。
      */
     @Test
     public void mustHandleMultipleCommandValues() {
@@ -102,9 +118,12 @@ public class IOUTransferTests {
     /**
      * Task 2.
      * The transfer transaction should only have one input state and one output state.
+     *転送トランザクションは、1つの入力状態と1つの出力状態のみを持つ必要があります。
      * TODO: Add constraints to the contract code to ensure a transfer transaction has only one input and output state.
+     * TODO：コントラクトコードに制約を追加して、転送トランザクションの入力状態と出力状態が1つだけであることを確認します。
      * Hint:
      * - Look at the contract code for "Issue".
+     *-「問題」の契約コードを見てください。
      */
     @Test
     public void mustHaveOneInputAndOneOutput() {
