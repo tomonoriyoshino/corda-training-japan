@@ -23,9 +23,9 @@ import static net.corda.training.contract.IOUContract.Commands.*;
  * This is the flow which handles issuance of new IOUs on the ledger.
  *これは、レジャーの新しいIOUの発行を処理するフローです。
  * Gathering the counterparty's signature is handled by the [CollectSignaturesFlow].
- * 取引相手の署名の収集は[CollectSignaturesFlow]によって処理されます。
+ *取引相手の署名の収集は[CollectSignaturesFlow]によって処理されます。
  * Notarisation (if required) and commitment to the ledger is handled by the [FinalityFlow].
- * 公証（必要な場合）および元帳へのコミットメントは、[FinalityFlow]によって処理されます。
+ *ノータリー（必要な場合）および元帳へのコミットメントは、[FinalityFlow]によって処理されます。
  * The flow returns the [SignedTransaction] that was committed to the ledger.
  *フローは、レジャーにコミットされた[SignedTransaction]を返します。
  */
@@ -43,15 +43,15 @@ public class IOUIssueFlow {
         @Override
         public SignedTransaction call() throws FlowException {
             // Step 1. Get a reference to the notary service on our network and our key pair.
-            //ステップ1.ネットワーク上の公証サービスとキーペアへの参照を取得します。
+            //ステップ1.ネットワーク上のノータリーサービスとキーペアへの参照を取得します。
             // Note: ongoing work to support multiple notary identities is still in progress.
-            //注：複数の公証人IDをサポートするための進行中の作業はまだ進行中です。
+            //注：複数のノータリーのアイデンティティをサポートするための作業はまだ進行中です。
             final Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
 
             // Step 2. Create a new issue command.
             //ステップ2.新しいissueコマンドを作成します。
-            // Remember that a command is a CommandData object and a list of CompositeKeysct and a list of CompositeKeys
-            //コマンドはCommandDataオブジェクトであり、CompositeKeysctのリストとCompositeKeysのリストであることを忘れないでください
+            // Remember that a command is a CommandData object and a list of CompositeKeys
+            //コマンドはCommandDataオブジェクトであり、CompositeKeysのリストであることを忘れないでください
             final Command<Issue> issueCommand = new Command<>(
                     new Issue(), state.getParticipants()
                     .stream().map(AbstractParty::getOwningKey)
@@ -88,6 +88,7 @@ public class IOUIssueFlow {
             SignedTransaction stx = subFlow(new CollectSignaturesFlow(ptx, sessions));
 
             // Step 7. Assuming no exceptions, we can now finalise the transaction
+            //ステップ7.例外を想定せずに、トランザクションを終了できるようになりました
             return subFlow(new FinalityFlow(stx, sessions));
         }
     }
