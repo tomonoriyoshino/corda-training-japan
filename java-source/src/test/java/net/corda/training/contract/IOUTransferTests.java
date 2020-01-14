@@ -166,8 +166,10 @@ public class IOUTransferTests {
     /**
      * Task 3.
      * TODO: Add a constraint to the contract code to ensure only the lender property can change when transferring IOUs.
+     * TODO：契約コードに制約を追加して、IOUの転送時に貸し手プロパティのみが変更できるようにします。
      * Hint:
      * - You should create a private internal copy constructor, accessible via a copy method on your IOUState.
+     *-IOUStateのcopyメソッドを介してアクセス可能なプライベート内部コピーコンストラクターを作成する必要があります。
      * - You can then compare a copy of the input to the output with the lender of the output as the lender of the input.
      * - You'll need references to the input and output ious.
      * - Remember you need to cast the [ContractState]s to [IOUState]s.
