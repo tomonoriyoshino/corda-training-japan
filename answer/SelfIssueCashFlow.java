@@ -24,12 +24,16 @@ public class SelfIssueCashFlow extends FlowLogic<Cash.State> {
     @Suspendable
     public Cash.State call() throws FlowException {
         /** Create the cash issue command. */
+        /**現金発行コマンドを作成します。 */
         OpaqueBytes issueRef = OpaqueBytes.of("1".getBytes());
         /** Note: ongoing work to support multiple notary identities is still in progress. */
+        /**注：複数のノータリーのアイデンティティをサポートするための進行中の作業はまだ進行中です。 */
         Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
         /** Create the cash issuance transaction. */
+        /**現金発行トランザクションを作成します。 */
         SignedTransaction cashIssueTransaction = subFlow(new CashIssueFlow(amount, issueRef, notary)).getStx();
         /** Return the cash output. */
+        /**キャッシュアウトプットを返します。 */
         return (Cash.State) cashIssueTransaction.getTx().getOutputs().get(0).getData();
     }
 
