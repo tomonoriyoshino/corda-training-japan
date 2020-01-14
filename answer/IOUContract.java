@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * This is the contract code which defines how the [IOUState] behaves. Looks at the unit tests in
  * [IOUContractTests] for more insight on how this contract verifies a transaction.
- *これは、[IOUState]の動作を定義する契約コードです。 この契約がトランザクションを検証する方法の詳細については
+ *これは、[IOUState]の動作を定義する契約コードです。 この契約がトランザクションを検証する方法の詳細については、
  *[IOUContractTests]のユニットテストを参照してください。
  */
 
@@ -37,9 +37,9 @@ public class IOUContract implements Contract {
      * The IOUContract can handle three transaction types involving [IOUState]s.
      * IOUContractは、[IOUState]を含む3つのトランザクションタイプを処理できます。
      * - Issuance: Issuing a new [IOUState] on the ledger, which is a bilateral agreement between two parties.
-     *-発行：元帳に新しい[IOUState]を発行します。これは、2者間の二国間協定です。
+     *-発行：元帳に新しい[IOUState]を発行します。これは、2者間の合意です。
      * - Transfer: Re-assigning the lender/beneficiary.
-     *-譲渡：貸主/受益者の再割り当て。
+      *-譲渡：貸主/受益者の再割り当て。
      * - Settle: Fully or partially settling the [IOUState] using the Corda [Cash] contract.
      *-決済：Corda [Cash]契約を使用して[IOUState]を完全または部分的に決済します。
      */
@@ -50,7 +50,7 @@ public class IOUContract implements Contract {
     }
     /**
      * The contract code for the [IOUContract].
-     * [IOUContract]の契約コード。
+     * [IOUContract]の契約コード。    
      * The constraints are self documenting so don't require any additional explanation.
      *制約は自己文書化されているため、追加の説明は必要ありません。
      */
@@ -66,8 +66,8 @@ public class IOUContract implements Contract {
          * This command data can then be used inside of a conditional statement to indicate which set of tests we
          * should be performing - we will use different assertions to enable the contract to verify the transaction
          * for issuing, settling and transferring.
-         * その後、このコマンドデータを条件ステートメント内で使用して、実行するテストのセットを示すことができます。
-         * 異なるアサーションを使用して、契約が発行、決済、転送のトランザクションを検証できるようにします。
+         *その後、このコマンドデータを条件ステートメント内で使用して、実行するテストのセットを示すことができます。
+         *異なるアサーションを使用して、契約が発行、決済、転送のトランザクションを検証できるようにします。
          */
         if (commandData.equals(new Commands.Issue())) {
 
@@ -107,7 +107,7 @@ public class IOUContract implements Contract {
                 require.using("An IOU transfer transaction should only create one output state.", tx.getOutputStates().size() == 1);
 
                 // Copy of input with new lender;
-                //新しい貸し手による入力のコピー。
+                //新しい貸し手によるインプットのコピー。
                 IOUState inputState = tx.inputsOfType(IOUState.class).get(0);
                 IOUState outputState = tx.outputsOfType(IOUState.class).get(0);
                 IOUState checkOutputState = outputState.withNewLender(inputState.getLender());
@@ -174,12 +174,12 @@ public class IOUContract implements Contract {
 
                 if (amountOutstanding.equals(acceptableCashSum)) {
                     // If the IOU has been fully settled then there should be no IOU output state.
-                    // IOUが完全に解決された場合、IOU出力状態はありません。
+                    // IOUが完全に決済された場合、IOU出力状態はありません。
                     require.using("There must be no output IOU as it has been fully settled.", tx.outputsOfType(IOUState.class).isEmpty());
 
                 } else {
                     // If the IOU has been partially settled then it should still exist.
-                    // IOUが部分的に解決されている場合、IOUはまだ存在するはずです。
+                    // IOUが部分的に決済されている場合、IOUはまだ存在するはずです。
                     require.using("There must be one output IOU.", tx.outputsOfType(IOUState.class).size() == 1);
 
                     IOUState outputIOU = tx.outputsOfType(IOUState.class).get(0);
@@ -201,3 +201,4 @@ public class IOUContract implements Contract {
 
     }
 
+}
