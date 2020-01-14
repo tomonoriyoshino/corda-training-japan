@@ -19,9 +19,13 @@ import org.junit.*;
 
 /**
  * Practical exercise instructions for Contracts Part 1.
+ *契約パート1の実践的な演習手順。
  * The objective here is to write some contract code that verifies a transaction to issue an {@link IOUState}.
+ *ここでの目的は、{@ link IOUState}を発行するトランザクションを検証する契約コードを記述することです。
  * As with the {@link IOUStateTests} uncomment each unit test and run them one at a time. Use the body of the tests and the
  * task description to determine how to get the tests to pass.
+ * {@link IOUStateTests}と同様に、各ユニットテストのコメントを外し、一度に1つずつ実行します。 
+ *テストの本文とタスクの説明を使用して、テストに合格する方法を決定します。
  */
 public class IOUIssueTests {
     // A pre-defined dummy command.
@@ -37,16 +41,24 @@ public class IOUIssueTests {
      * Task 1.
      * Recall that Commands are required to hint to the intention of the transaction as well as take a list of
      * public keys as parameters which correspond to the required signers for the transaction.
+     * コマンドは、トランザクションの目的を暗示するだけでなく、トランザクションに必要な署名者に対応するパラメータとして
+     * 公開キーのリストを取得する必要があることを思い出してください。
      * Commands also become more important later on when multiple actions are possible with an IOUState, e.g. Transfer
      * and Settle.
+     *コマンドは、IOUStateで複数のアクションが可能な場合に、後でより重要になります。 転送および決済。
      * TODO: Add an "Issue" command to the IOUContract and check for the existence of the command in the verify function.
+     * TODO：「Issue」コマンドをIOUContractに追加し、検証機能でコマンドの存在を確認します。
      * Hint:
      * - For the Issue command we only care about the existence of it in a transaction, therefore it should extend
      *   the {@link TypeOnlyCommandData} class.
+     *-Issueコマンドについては、トランザクション内での存在のみを考慮するため、{@ link TypeOnlyCommandData}クラスを拡張する必要があります。
      * - The command should be defined inside {@link IOUContract}.
+     *-コマンドは{@link IOUContract}内で定義する必要があります。
      * - We usually encapsulate our commands in an interface inside the contract class called {@link Commands} which
      *   extends the {@link CommandData} interface. The Issue command itself should be defined inside the {@link Commands}
      *   interface as well as implement it, for example:
+     *-通常、{@ link CommandData}インターフェイスを拡張する{@link Commands}と呼ばれるコントラクトクラス内のインターフェイスにコマンドをカプセル化します。 
+     * Issueコマンド自体は、{@ link Commands}インターフェース内で定義および実装する必要があります。次に例を示します。
      *
      *   public interface Commands extends CommandData {
      *      class X extends TypeOnlyCommandData implements Commands{}
@@ -54,8 +66,12 @@ public class IOUIssueTests {
      *
      * - We can check for the existence of any command that implements [IOUContract.Commands] by using the
      *   [requireSingleCommand] function which takes a {@link Class} argument.
+     *-{relinkSingleCommand}関数を使用して{@link Class}引数を取ることにより
+     *  [IOUContract.Commands]を実装するコマンドの存在を確認できます。
      * - You can use the [requireSingleCommand] function on [tx.getCommands()] to check for the existence and type of the specified command
      *   in the transaction. [requireSingleCommand] requires a Class argument to identify the type of command required.
+     *-[tx.getCommands（）]で[requireSingleCommand]関数を使用して、トランザクション内の指定されたコマンドの存在とタイプを確認できます。 
+     *[requireSingleCommand]には、必要なコマンドのタイプを識別するためにClass引数が必要です。
      *
      *         requireSingleCommand(tx.getCommands(), REQUIRED_COMMAND.class)
      */
@@ -82,9 +98,13 @@ public class IOUIssueTests {
      * Task 2.
      * As previously observed, issue transactions should not have any input state references. Therefore we must check to
      * ensure that no input states are included in a transaction to issue an IOU.
+     *前述のように、発行トランザクションには入力状態の参照を含めないでください。 したがって、IOUを発行するトランザクションに
+     *入力状態が含まれていないことを確認する必要があります。
      * TODO: Write a contract constraint that ensures a transaction to issue an IOU does not include any input states.
+     * TODO：IOUを発行するトランザクションに入力状態が含まれないことを保証する契約制約を記述します。
      * Hint: use a [requireThat] lambda with a constraint to inside the [IOUContract.verify] function to encapsulate your
      * constraints:
+     *ヒント：[requireThat]ラムダを制約付きで[IOUContract.verify]関数内に使用して、制約をカプセル化します。
      *
      *     requireThat(requirement -> {
      *          requirement.using("Message when constraint fails", (boolean constraining expression));
@@ -94,9 +114,12 @@ public class IOUIssueTests {
      *
      * Note that the unit tests often expect contract verification failure with a specific message which should be
      * defined with your contract constraints. If not then the unit test will fail!
+     *単体テストでは、契約の制約で定義する必要のある特定のメッセージで、契約の検証が失敗することが多いことに注意してください。 
+     *そうでない場合、単体テストは失敗します！
      *
      * You can access the list of inputs via the {@link LedgerTransaction} object which is passed into
      * [IOUContract.verify].
+     * [IOUContract.verify]に渡される{@link LedgerTransaction}オブジェクトを介して入力のリストにアクセスできます。
      */
     @Test
     public void issueTransactionMustHaveNoInputs() {
@@ -121,9 +144,12 @@ public class IOUIssueTests {
     /**
      * Task 3.
      * Now we need to ensure that only one {@link IOUState} is issued per transaction.
+     *ここで、トランザクションごとに1つの{@link IOUState}のみが発行されるようにする必要があります。
      * TODO: Write a contract constraint that ensures only one output state is created in a transaction.
+     * TODO：トランザクションで1つの出力状態のみが作成されることを保証するコントラクト制約を記述します。
      * Hint: Write an additional constraint within the existing [requireThat] block which you created in the previous
      * task.
+     *ヒント：前のタスクで作成した既存の[requireThat]ブロック内に追加の制約を記述します。
      */
     @Test
     public void issueTransactionMustHaveOneOutput() {
@@ -148,18 +174,28 @@ public class IOUIssueTests {
      * Task 4.
      * Now we need to consider the properties of the {@link IOUState}. We need to ensure that an IOU should always have a
      * positive value.
+     *ここで、{@ link IOUState}のプロパティを検討する必要があります。 IOUには常に正の値を設定する必要があります。
      * TODO: Write a contract constraint that ensures newly issued IOUs always have a positive value.
+     * TODO：新しく発行されたIOUが常に正の値を持つことを保証する契約制約を記述します。
      * Hint: You will need a number of hints to complete this task!
+     *ヒント：このタスクを完了するには、いくつかのヒントが必要です！
      * - Create a new constant which will hold a reference to the output IOU state.
+     *-出力IOU状態への参照を保持する新しい定数を作成します。
      * - We need to obtain a reference to the proposed IOU for issuance from the [LedgerTransaction.getOutputStates()] list
+     *-[LedgerTransaction.getOutputStates（）]リストから発行の提案されたIOUへの参照を取得する必要があります
      * - You can use the function [get(0)] to grab the single element from the list.
+     *-関数[get（0）]を使用して、リストから単一の要素を取得できます。
      * This list is typed as a list of {@link ContractState}s, therefore we need to cast the {@link ContractState} which we return
      *   to an {@link IOUState}. E.g.
+     *このリストは{@link ContractState}のリストとして入力されるため
+     *{@ link ContractState}をキャストして{@link IOUState}に戻す必要があります。 例えば。
      *
      *       XState state = (XState)tx.getOutputStates().get(0)
      *
      * - When checking the [IOUState.getAmount()] property is greater than zero, you need to check the
      *   [IOUState.getAmount().getQuantity()] field.
+     *-[IOUState.getAmount（）]プロパティがゼロより大きいことを確認する場合
+     *[IOUState.getAmount（).getQuantity（）]フィールドを確認する必要があります。
      */
     @Test
     public void cannotCreateZeroValueIOUs() {
@@ -191,10 +227,14 @@ public class IOUIssueTests {
     /**
      * Task 5.
      * For obvious reasons, the identity of the lender and borrower must be different.
+     *明らかな理由により、貸し手と借り手の身元は異なっていなければなりません。
      * TODO: Add a contract constraint to check the lender is not the borrower.
+     * TODO：契約の制約を追加して、貸し手が借り手ではないことを確認します。
      * Hint:
      * - You can use the [IOUState.getLender()] and [IOUState.getBorrower()] properties.
+     *-[IOUState.getLender（）]および[IOUState.getBorrower（）]プロパティを使用できます。
      * - This check must be made before the checking who has signed.
+     *-この確認は、誰が署名したかを確認する前に行う必要があります。
      */
     @Test
     public void lenderAndBorrowerCannotBeTheSame() {
@@ -218,8 +258,10 @@ public class IOUIssueTests {
     /**
      * Task 6.
      * The list of public keys which the commands hold should contain all of the participants defined in the {@link IOUState}.
+     *コマンドが保持する公開鍵のリストには、{@ link IOUState}で定義されたすべての参加者が含まれている必要があります。
      * This is because the IOU is a bilateral agreement where both parties involved are required to sign to issue an
      * IOU or change the properties of an existing IOU.
+     *これは、IOUは二国間協定であり、関係する両当事者がIOUの発行または既存のIOUのプロパティの変更に署名する必要があるためです。
      * TODO: Add a contract constraint to check that all the required signers are {@link IOUState} participants.
      * Hint:
      * - In Java, you can perform a set equality check of two sets with the .equals()
