@@ -263,23 +263,35 @@ public class IOUIssueTests {
      * IOU or change the properties of an existing IOU.
      *これは、IOUは二国間協定であり、関係する両当事者がIOUの発行または既存のIOUのプロパティの変更に署名する必要があるためです。
      * TODO: Add a contract constraint to check that all the required signers are {@link IOUState} participants.
+     TODO：契約の制約を追加して、必要なすべての署名者が{@link IOUState}の参加者であることを確認します。
      * Hint:
      * - In Java, you can perform a set equality check of two sets with the .equals()
+     *-Javaでは、.equals（）を使用して2つのセットのセット等価性チェックを実行できます。
      * - We need to check that the signers for the Command of this transaction equals the participants list.
+     *-このトランザクションのコマンドの署名者が参加者リストと等しいことを確認する必要があります。
      * - We don't want any additional public keys not listed in the IOUs participants list.
+     *-IOU参加者リストにリストされていない追加の公開キーは必要ありません。
      * - You will need a reference to the Issue command to get access to the list of signers.
+     *-署名者のリストにアクセスするには、Issueコマンドへの参照が必要です。
      * - [requireSingleCommand] returns the single required [CommandWithParties<Commands>] - you can assign the return
      * value to a constant.
+     *-[requireSingleCommand]は必要な単一の[CommandWithParties <Commands>]を返します-戻り値を定数に割り当てることができます。
      * - Next, you will need to retrieve the participants of the output state and ensure they are equal them.
+     *-次に、出力状態の参加者を取得し、それらが等しいことを確認する必要があります。
      *
      * Java Hints
      * - Java's map function allows for conversion of a Collection. However, it requires a Stream object (created by
      * calling collection.stream()), which must then
      * be converted back into a Collection using collect(Collectors.toCOLLECTION_TYPE). All together, this looks like:
+     *-Javaのマップ機能により、コレクションの変換が可能になります。 ただし、collect.stream（）を呼び出して作成されたStreamオブジェクトが必要です。
+     *このオブジェクトは、collect（Collectors.toCOLLECTION_TYPE）を使用してコレクションに変換し直す必要があります。 
+     *全体として、これは次のようになります。
      *      collection.stream().map(element -> (some operation on element)).collect(Collectors.toCOLLECTION_TYPE)
      * This will be needed for mapping the List<Party> from getParticipants() to a List<PublicKey>
+     *これは、List <Party>をgetParticipants（）からList <PublicKey>にマッピングするために必要です。
      * - https://zeroturnaround.com/rebellabs/java-8-explained-applying-lambdas-to-java-collections/
      * - A Collection can be turned into a set using: new HashSet<>(collection)
+     *-コレクションは、次を使用してセットに変換できます：new HashSet <>（collection）
      */
     @Test
     public void lenderAndBorrowerMustSignIssueTransaction() {
