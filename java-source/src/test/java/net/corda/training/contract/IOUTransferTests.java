@@ -171,10 +171,14 @@ public class IOUTransferTests {
      * - You should create a private internal copy constructor, accessible via a copy method on your IOUState.
      *-IOUStateのcopyメソッドを介してアクセス可能なプライベート内部コピーコンストラクターを作成する必要があります。
      * - You can then compare a copy of the input to the output with the lender of the output as the lender of the input.
+     *-次に、入力のコピーを出力と比較することで出力の貸し手と入力の貸し手を比較できます。
      * - You'll need references to the input and output ious.
+     *-入力と出力への参照が必要です。
      * - Remember you need to cast the [ContractState]s to [IOUState]s.
+     *-[ContractState]を[IOUState]にキャストする必要があることを忘れないでください。
      * - It's easier to take this approach then check all properties other than the lender haven't changed, including
      *   the [linearId] and the [contract]!
+     *-[linearId]や[contract]を含め、貸し手が変更されていない以外のすべてのプロパティをチェックしてから、このアプローチを採用する方が簡単です。
      */
     @Test
     public void onlyTheLenderMayChange() {
@@ -212,7 +216,9 @@ public class IOUTransferTests {
     /**
      * Task 4.
      * It is fairly obvious that in a transfer IOU transaction the lender must change.
+     *転送IOUトランザクションでは、貸し手は変更する必要があることはかなり明白です。
      * TODO: Add a constraint to check the lender has changed in the output IOU.
+     * TODO：出力IOUで貸し手が変更されたことを確認する制約を追加します。
      */
     @Test
     public void theLenderMustChange() {
@@ -237,7 +243,9 @@ public class IOUTransferTests {
     /**
      * Task 5.
      * All the participants in a transfer IOU transaction must sign.
+     *転送IOUトランザクションのすべての参加者は署名する必要があります。
      * TODO: Add a constraint to check the old lender, the new lender and the recipient have signed.
+     * TODO：制約を追加して、古い貸し手、新しい貸し手、および受信者が署名したことを確認します。
      */
     @Test
     public void allParticipantsMustSign() {
