@@ -31,7 +31,9 @@ import java.security.PublicKey;
 
 /**
  * Practical exercise instructions Flows part 1.
+ *実践的な演習の手順フローパート1。
  * Uncomment the unit tests and use the hints + unit test body to complete the FLows such that the unit tests pass.
+ *ユニットテストのコメントを外し、ヒント+ユニットテスト本体を使用して、ユニットテストがパスするようにFLowを完了します。
  */
 public class IOUIssueFlowTests {
 
@@ -71,19 +73,32 @@ public class IOUIssueFlowTests {
     /**
      * Task 1.
      * Build out the {@link IOUIssueFlow}!
+     * {@link IOUIssueFlow}を作成します！
      * TODO: Implement the {@link IOUIssueFlow} flow which builds and returns a partially {@link SignedTransaction}.
+     * TODO：部分的に{@link SignedTransaction}を構築して返す{@link IOUIssueFlow}フローを実装します。
      * Hint:
      * - There's a lot to do to get this unit test to pass!
+     *-この単体テストに合格するには、やることがたくさんあります！
      * - Create a {@link TransactionBuilder} and pass it a notary reference.
+     *-{@link TransactionBuilder}を作成し、公証人の参照を渡します。
      * -- A notary {@link Party} object can be obtained from [FlowLogic.getServiceHub().getNetworkMapCache().getNotaryIdentities()].
+     * -- [FlowLogic.getServiceHub（）.getNetworkMapCache（）.getNotaryIdentities（）]から公証人{@link Party}オブジェクトを取得できます。
      * -- In this training project there is only one notary
+     *--このトレーニングプロジェクトには、公証人が1人しかいない
      * - Create a new {@link Command} object with the [IOUContract.Commands.Issue] type
-     * -- The required signers will be the same as the state's participants
+     *-[IOUContract.Commandommands.Issue]タイプで新しい{@link Command}オブジェクトを作成します
+     *-- The required signers will be the same as the state's participants
+     *-必要な署名者はステートの参加者と同じになります
      * -- Add the {@link Command} to the transaction builder [addCommand].
+     *-{@link Command}をトランザクションビルダー[addCommand]に追加します。
      * - Use the flow's {@link IOUState} parameter as the output state with [addOutputState]
+     *-フローの{@link IOUState}パラメーターを[addOutputState]の出力状態として使用する
      * - Extra credit: use [TransactionBuilder.withItems] to create the transaction instead
+     *-追加クレジット：[TransactionBuilder.withItems]を使用してトランザクションを作成します
      * - Sign the transaction and convert it to a {@link SignedTransaction} using the [getServiceHub().signInitialTransaction] method.
+     *-[getServiceHub（）。signInitialTransaction]メソッドを使用して、トランザクションに署名し、{@ link SignedTransaction}に変換します。
      * - Return the {@link SignedTransaction}.
+     *-{@link SignedTransaction}を返します。
      */
     @Test
     public void flowReturnsCorrectlyFormedPartiallySignedTransaction() throws Exception {
