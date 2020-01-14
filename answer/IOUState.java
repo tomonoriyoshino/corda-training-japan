@@ -14,7 +14,7 @@ import javax.servlet.http.Part;
 
 /**
  * The IOU State object, with the following properties:
- *次のプロパティを持つIOU状態オブジェクト：
+ *次のプロパティを持つIOU Stateオブジェクト：
  * - [amount] The amount owed by the [borrower] to the [lender]
  *-[金額] [借り手]が[貸し手]に支払うべき金額
  * - [lender] The lending party.
@@ -26,10 +26,11 @@ import javax.servlet.http.Part;
  * - [paid] Records how much of the [amount] has been paid.
  *-[支払い済み] [支払い済み]の金額を記録します。
  * - [linearId] A unique id shared by all LinearState states representing the same agreement throughout history within
- *   the vaults of all parties. Verify methods should check that one input and one output share the id in a transaction,
- *   except at issuance/termination.
- *-[linearId]すべての関係者の保管庫内の履歴を通じて同じ合意を表すすべてのLinearState状態で共有される一意のID。 
- *検証メソッドは、発行/終了時を除き、1つの入力と1つの出力がトランザクションでIDを共有することを確認する必要があります。
+ *-[linearId]すべてのLinearState状態で共有される一意のID。
+ * the vaults of all parties. Verify methods should check that one input and one output share the id in a transaction,
+ *すべての関係者のVault。 メソッドは、1つの入力と1つの出力がトランザクションでIDを共有していることを確認する必要があります。
+ * except at issuance/termination.
+ *発行/終了時を除きます。
  */
 
 @BelongsToContract(IOUContract.class)
@@ -80,8 +81,7 @@ public class IOUState implements ContractState, LinearState {
     /**
      *  This method will return a list of the nodes which can "use" this state in a valid transaction. In this case, the
      *  lender or the borrower.
-     *このメソッドは、有効なトランザクションでこの状態を「使用」できるノードのリストを返します。 
-     *この場合、貸主または借り手。
+     *このメソッドは、有効なトランザクションでこの状態を「使用」できるノードのリストを返します。 この場合、貸し手または借り手。
      */
     @Override
     public List<AbstractParty> getParticipants() {
@@ -90,7 +90,7 @@ public class IOUState implements ContractState, LinearState {
 
     /**
      * Helper methods for when building transactions for settling and transferring IOUs.
-     * IOUを決済および転送するためのトランザクションを構築するときのヘルパーメソッド。
+     * IOUを決済および転送するためのトランザクションを構築するときの補助となるメソッド。
      * - [pay] adds an amount to the paid property. It does no validation.
      *-[pay]は、支払われたプロパティに金額を追加します。 検証は行われません。
      * - [withNewLender] creates a copy of the current state with a newly specified lender. For use when transferring.
